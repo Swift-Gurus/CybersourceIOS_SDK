@@ -1,0 +1,9 @@
+use_frameworks!
+
+target 'CybercourceSDK_Example' do
+  pod 'CybercourceSDK', :path => '../'
+
+  target 'CybercourceSDK_Tests' do
+    inherit! :search_paths
+  end
+end

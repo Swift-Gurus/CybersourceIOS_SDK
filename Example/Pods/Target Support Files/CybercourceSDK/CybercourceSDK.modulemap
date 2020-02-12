@@ -1,0 +1,6 @@
+framework module CybercourceSDK {
+  umbrella header "CybercourceSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

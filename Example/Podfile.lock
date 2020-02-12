@@ -1,0 +1,16 @@
+PODS:
+  - CybercourceSDK (0.1.0)
+
+DEPENDENCIES:
+  - CybercourceSDK (from `../`)
+
+EXTERNAL SOURCES:
+  CybercourceSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CybercourceSDK: 8c99ee8bfb15f2d72911465686c7790b8646d34e
+
+PODFILE CHECKSUM: 84e6c4e8af609d970f5caa097494860712a49c7d
+
+COCOAPODS: 1.8.4

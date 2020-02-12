@@ -1,0 +1,6 @@
+framework module Pods_CybercourceSDK_Example {
+  umbrella header "Pods-CybercourceSDK_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
