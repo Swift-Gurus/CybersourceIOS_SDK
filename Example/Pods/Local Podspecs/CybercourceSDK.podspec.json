@@ -16,7 +16,15 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "11.0"
   },
-  "source_files": "CybercourceSDK/Classes/**/*"
+  "source_files": "CybercourceSDK/Classes/**/*",
+  "dependencies": {
+    "AHNetwork": [
+
+    ],
+    "EitherResult": [
+
+    ]
+  }
 }
