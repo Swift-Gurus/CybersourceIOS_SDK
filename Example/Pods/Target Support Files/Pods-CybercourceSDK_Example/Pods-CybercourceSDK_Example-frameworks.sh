@@ -163,12 +163,14 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AHNetwork/AHNetwork.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ALEither/ALEither.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CybercourceSDK/CybercourceSDK.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/EitherResult/EitherResult.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AHNetwork/AHNetwork.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ALEither/ALEither.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CybercourceSDK/CybercourceSDK.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/EitherResult/EitherResult.framework"
 fi
