@@ -9,24 +9,24 @@ import Foundation
 
 
 public struct GeneratedKey: Decodable {
-    let keyId: String
-    let der: Der
-    let jwk: JWK?
+    public let keyId: String
+    public let der: Der
+    public let jwk: JWK?
 }
 
 extension GeneratedKey {
-    struct Der: Decodable {
-        let format: String
-        let algorithm: String
-        let publicKey: String
+    public struct Der: Decodable {
+        public let format: String
+        public let algorithm: String
+        public let publicKey: String
     }
     
     
-    struct JWK: Decodable {
-        let kty: String
-        let use: String
-        let kid: String
-        let n: String
-        let e: String
+    public struct JWK: Decodable {
+        public let kty: String
+        public let use: String
+        public let kid: String
+        public let n: String
+        public let e: String
     }
 }

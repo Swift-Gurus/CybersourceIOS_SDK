@@ -17,8 +17,8 @@ final class CurrentDateProviderImp: CurrentDateProvider {
     
     lazy var dateFormatter = DateFormatter()
     var currentDateString: String {
-        return "Wed, 19 Feb 2020 19:26:13 GMT"
-//        return dateFormatter.string(from: Date())
+//        return "Wed, 19 Feb 2020 19:26:13 GMT"
+        return dateFormatter.string(from: Date())
     }
     
     init() {

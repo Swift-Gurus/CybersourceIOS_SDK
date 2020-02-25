@@ -18,9 +18,11 @@ final class HTTPSignatureSigner: RequestSigner {
     let defaultHeaders: [HeaderKey: String]
     let digestCreator: DigestCreator
     let dateProvider: CurrentDateProvider
+    let hMACConverter: HMACConverter
     init(signatureConfig: HTTPSignatureConfig,
          dateProvider: CurrentDateProvider = CurrentDateProviderImp(),
-         digestCreator: DigestCreator = DigestCreatorImp()) {
+         digestCreator: DigestCreator = DigestCreatorImp(),
+         hMACConverter: HMACConverter = HMACConverterImp()) {
         
         defaultHeaders = [.merchantID: signatureConfig.merchantID,
                           .host: signatureConfig.host]
@@ -28,6 +30,7 @@ final class HTTPSignatureSigner: RequestSigner {
         self.signatureConfig = signatureConfig
         self.digestCreator = digestCreator
         self.dateProvider = dateProvider
+        self.hMACConverter = hMACConverter
     }
     
     func sign(request: CybersourceRequest) -> CybersourceRequest {
@@ -55,19 +58,16 @@ final class HTTPSignatureSigner: RequestSigner {
         return mHeaders.normalize
     }
     
-    
     private func digest(for request: CybersourceRequest) -> String {
-
         return request.body.map(digestCreator.createDigestString) ?? ""
     }
 
-    
+
     private func createSignature(for hash: [HeaderKey: String],
                                  using config: SignatureConfig) -> String {
-         let signatureBase = createSignatureBase(from: hash, order: config.headers)
-        let data = signatureBase.data(using: .utf8)!
-        let signatureDigest = data.digest(.sha256, key: config.sharedKey).base64EncodedString()
-         return createSignatureString(from: config, signature: signatureDigest)
+        let signatureBase = createSignatureBase(from: hash, order: config.headers)
+        let signatureDigest = hMACConverter.calculateHash(for: signatureBase, using: config.sharedKey)
+        return createSignatureString(from: config, signature: signatureDigest)
     }
     
     private func signatureHeader(headers: [HeaderKey]) -> String {
@@ -78,7 +78,7 @@ final class HTTPSignatureSigner: RequestSigner {
         return order.reduce(into: []) { (acc, key) in
             guard let value = hash[key] else { return }
             acc.append("\(key.formattedValue): \(value)")
-        }.joined(separator: " ")
+        }.joined(separator: "\n")
     }
     
     private func requestTargetString(from request: CybersourceRequest) -> String {
@@ -128,5 +128,10 @@ extension HTTPSignatureSigner {
         let algorithm: String
         let sharedKey: String
         let headers: [HeaderKey]
+        
+        
+        var encodedKey: Data {
+            return Data(base64Encoded: sharedKey)!
+        }
     }
 }
