@@ -43,11 +43,14 @@ public class CybercourceBuilder {
     
     public var httpSingnatureConfig: HTTPAuthConfig?
     public var environment: Environment = .test
-    
+
+    public var publicKeyStorage: PublicKeyCRUD?
     public init() {}
     
     public var cardTokenizer: CardTokenizer {
-        publicFacade
+        guard let keyStorage = publicKeyStorage else { return publicFacade }
+        return CardTokenizerEncryptionDecorator(tokenizer: publicFacade,
+                                                publicKeyReader: keyStorage)
     }
     
     public var keyGenerator: KeyGenerator {

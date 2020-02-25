@@ -16,9 +16,10 @@
 		8920D63023FAE54300A3EA32 /* HTTPSignatureSignerTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8920D62F23FAE54300A3EA32 /* HTTPSignatureSignerTestCases.swift */; };
 		8920D63423FAE66A00A3EA32 /* CurrentDateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8920D63223FAE65F00A3EA32 /* CurrentDateProviderMock.swift */; };
 		8920D63D23FAEFBB00A3EA32 /* PaymentInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8920D63C23FAEFBB00A3EA32 /* PaymentInputMock.swift */; };
-		8920D64323FB471200A3EA32 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8920D64223FB471200A3EA32 /* SwiftPackageProductDependency */; };
+		8920D64323FB471200A3EA32 /* CryptorRSA in Frameworks */ = {isa = PBXBuildFile; productRef = 8920D64223FB471200A3EA32 /* CryptorRSA */; };
 		8997B40623F9E74A00BF0EBA /* DigestCreatorImpTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997B40523F9E74A00BF0EBA /* DigestCreatorImpTestCases.swift */; };
 		8997B40B23F9E80B00BF0EBA /* SHA256ConverterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997B40923F9E77C00BF0EBA /* SHA256ConverterMock.swift */; };
+		899E904024058914008A2269 /* RSAUtilsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899E903F24058914008A2269 /* RSAUtilsWrapper.swift */; };
 		F512CB358873DF01DE5AE58E /* Pods_CybercourceSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E26BBED22CD34D2BC822072 /* Pods_CybercourceSDK_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		8997B40423F9E74A00BF0EBA /* CybercourceSDK_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CybercourceSDK_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		8997B40523F9E74A00BF0EBA /* DigestCreatorImpTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigestCreatorImpTestCases.swift; sourceTree = "<group>"; };
 		8997B40923F9E77C00BF0EBA /* SHA256ConverterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256ConverterMock.swift; sourceTree = "<group>"; };
+		899E903F24058914008A2269 /* RSAUtilsWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RSAUtilsWrapper.swift; path = ../../RSAUtilsWrapper.swift; sourceTree = "<group>"; };
 		A750D392B4373DE5A4146AF7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A7DEC0D756EC54B58BD1E56A /* Pods-CybercourceSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CybercourceSDK_Example.release.xcconfig"; path = "Target Support Files/Pods-CybercourceSDK_Example/Pods-CybercourceSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		B0CD7BCF8FA6EBE392A1024A /* Pods-CybercourceSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CybercourceSDK_Tests.debug.xcconfig"; path = "Target Support Files/Pods-CybercourceSDK_Tests/Pods-CybercourceSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,7 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F512CB358873DF01DE5AE58E /* Pods_CybercourceSDK_Example.framework in Frameworks */,
-				8920D64323FB471200A3EA32 /* BuildFile in Frameworks */,
+				8920D64323FB471200A3EA32 /* CryptorRSA in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +126,7 @@
 		607FACD21AFB9204008FA782 /* Example for CybercourceSDK */ = {
 			isa = PBXGroup;
 			children = (
+				899E903F24058914008A2269 /* RSAUtilsWrapper.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -234,7 +237,7 @@
 			);
 			name = CybercourceSDK_Example;
 			packageProductDependencies = (
-				8920D64223FB471200A3EA32 /* SwiftPackageProductDependency */,
+				8920D64223FB471200A3EA32 /* CryptorRSA */,
 			);
 			productName = CybercourceSDK;
 			productReference = 607FACD01AFB9204008FA782 /* CybercourceSDK_Example.app */;
@@ -291,7 +294,7 @@
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
-				8920D64123FB471200A3EA32 /* RemoteSwiftPackageReference */,
+				8920D64123FB471200A3EA32 /* XCRemoteSwiftPackageReference "BlueRSA" */,
 			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
@@ -392,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899E904024058914008A2269 /* RSAUtilsWrapper.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
@@ -663,7 +667,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8920D64123FB471200A3EA32 /* RemoteSwiftPackageReference */ = {
+		8920D64123FB471200A3EA32 /* XCRemoteSwiftPackageReference "BlueRSA" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/IBM-Swift/BlueRSA";
 			requirement = {
@@ -674,9 +678,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8920D64223FB471200A3EA32 /* SwiftPackageProductDependency */ = {
+		8920D64223FB471200A3EA32 /* CryptorRSA */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8920D64123FB471200A3EA32 /* RemoteSwiftPackageReference */;
+			package = 8920D64123FB471200A3EA32 /* XCRemoteSwiftPackageReference "BlueRSA" */;
 			productName = CryptorRSA;
 		};
 /* End XCSwiftPackageProductDependency section */

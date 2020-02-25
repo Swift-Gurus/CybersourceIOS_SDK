@@ -17,7 +17,6 @@ class DigestCreatorImpTestCases: XCTestCase {
     
     func test_adds_prefix() {
         let data = try! encoder.encode(KeyGenerationInput())
-        debugPrint(String(data: data, encoding: .utf8))
         let string = creatorToTest.createDigestString(for: data)
         XCTAssertEqual(string, "SHA-256=bena9bhB3Jy4uPvfu1tAC0uN8AuzzM+xjqmDwR5//EA=")
     }

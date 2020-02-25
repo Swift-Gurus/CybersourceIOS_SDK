@@ -12,6 +12,12 @@ import CryptorRSA
 import CybercourceSDK
 import AHNetwork
 import CommonCrypto
+import SwiftyRSA
+
+
+final class PublicKeyStorage: PublicKeyCRUD {
+    var publicKey: String = ""
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,21 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var tokenizer: KeyGenerator!
     var encryptor: CardTokenizer!
-
+    let keyStorage = PublicKeyStorage()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-//        let httpAuthConfig = HTTPAuthConfig(merchantID: "aldogroup",
-//                                            keyID: "9d3badef-b0a2-4dec-87ec-a9ad4cc1863e",
-//                                            shardeKeyValue: "sC/DHhM506BRWgkpzyBCpQ1/NtSeNwb1ZGWq/S8JpQQ=")
-        
-        
+
           let httpAuthConfig = HTTPAuthConfig(merchantID: "testrest",
                                                     keyID: "08c94330-f618-42a3-b09d-e1e43be5efda",
                                                     shardeKeyValue: "yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=")
         let builder = CybercourceBuilder()
         builder.httpSingnatureConfig = httpAuthConfig
         tokenizer = builder.keyGenerator
+        builder.publicKeyStorage = keyStorage
         encryptor = builder.cardTokenizer
 
  
@@ -47,43 +48,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return true
   
     }
-    
-    
-    
+
     
     private func tokenizeCard(using publicKey: GeneratedKey) {
+        keyStorage.publicKey = publicKey.der.publicKey
         let cardNumber = "4111111111111111"
-        let key = try! CryptorRSA.createPublicKey(withPEM: publicKey.der.publicKey)
-        let message = try! CryptorRSA.createPlaintext(with: cardNumber, using: .utf8)
-        let ecnrypted = try! message.encrypted(with: key, algorithm: .sha256)
-        let input = CardTokenizeInput(cardNumber: ecnrypted!.base64String,
+        let cardInput = CardInfoInput(cardNumber: cardNumber,
                                       cardExpirationMonth: "05",
-                                      cardExpirationYear: "25",
+                                      cardExpirationYear: "2020",
                                       cardType: "001")
-        
+
+        let input = CardTokenizeInput(keyId: publicKey.keyId, cardInfo: cardInput)
         encryptor.tokenize(cardInfo: input) { (result) in
             
-            result.do(work: { debugPrint($0)} )
-                .onError({ debugPrint($0.localizedDescription)})
+            result.do(work: { debugPrint($0) } )
+                  .onError({ debugPrint($0.localizedDescription)})
         }
     }
-    
-    
-    private func printError(response: AHNetworkResponse) {
-        
-    }
-    
-//    func print(k: Array<UInt8>) {
-//        debugPrint(k)
-//    }
-    
-//
-//    func printError(_ error: Error) {
-//        guard case let .responseError(response) = error as? CoreNetworkError else { return }
-//        debugPrint(String(data: response.data, encoding: .utf8)!)
-//
-//
-//    }
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
