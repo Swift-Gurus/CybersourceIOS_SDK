@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "summary": "A short description of CybercourceSDK.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/c693a6faca023f9cc99909b1e119c25011f8a8b8/CybercourceSDK",
+  "homepage": "https://github.com/aldo-dev/CybersourceIOS_SDK",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "c693a6faca023f9cc99909b1e119c25011f8a8b8": "alexei.hmelevski@gmail.com"
+    "AlexHmelevski": "alexei.hmelevski@gmail.com"
   },
   "source": {
-    "git": "https://github.com/c693a6faca023f9cc99909b1e119c25011f8a8b8/CybercourceSDK.git",
+    "git": "https://github.com/aldo-dev/CybersourceIOS_SDK.git",
     "tag": "0.1.0"
   },
+  "swift_versions": "5.0",
   "platforms": {
     "ios": "11.0"
   },
@@ -29,5 +30,6 @@
     "CryptoSwift": [
 
     ]
-  }
+  },
+  "swift_version": "5.0"
 }
