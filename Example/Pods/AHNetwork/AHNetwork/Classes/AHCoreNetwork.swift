@@ -77,7 +77,8 @@ enum CoreNetworkError: LocalizedError {
         case .timeout:
             msg = "Response timeout"
         case let .responseError(networkResponse):
-            msg = "Network status response: \(String(networkResponse.statusCode))"
+            let body = String(data: networkResponse.data, encoding: .utf8) ?? ""
+            msg = "Network status response: \(body))"
         }
 
         return msg

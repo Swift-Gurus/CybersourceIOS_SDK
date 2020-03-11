@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-CybercourceSDK_Example/Pods-CybercourceSDK_Example-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AHNetwork/AHNetwork.framework
+${BUILT_PRODUCTS_DIR}/ALEither/ALEither.framework
+${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework
+${BUILT_PRODUCTS_DIR}/CybercourceSDK/CybercourceSDK.framework
+${BUILT_PRODUCTS_DIR}/EitherResult/EitherResult.framework

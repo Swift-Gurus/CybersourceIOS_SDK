@@ -1,10 +1,12 @@
 PODS:
-  - AHNetwork (0.3.0):
+  - AHNetwork (0.3.1):
     - ALEither
     - EitherResult
   - ALEither (0.1.8)
+  - CryptoSwift (1.3.0)
   - CybercourceSDK (0.1.0):
     - AHNetwork
+    - CryptoSwift
     - EitherResult
   - EitherResult (0.1.5)
 
@@ -15,6 +17,7 @@ SPEC REPOS:
   trunk:
     - AHNetwork
     - ALEither
+    - CryptoSwift
     - EitherResult
 
 EXTERNAL SOURCES:
@@ -22,9 +25,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AHNetwork: c615e880ffa57f7a5d12726179fb533a0e933ee5
+  AHNetwork: 4aed90a3b1388f05be87467faefeb85949e3f762
   ALEither: 57cfaba77b3a2c2e15741b16213b515d9bc839a6
-  CybercourceSDK: f96f954c1133cae071d49a42a3f927aa5bf53462
+  CryptoSwift: 1283821600233bdbeb96d7b389c3288c3bf77211
+  CybercourceSDK: ea512da737289d1311f64b67126447755717afdd
   EitherResult: 9a67a8cd25fa6d6f8ded0e7304ea2eb302bcbbc8
 
 PODFILE CHECKSUM: 84e6c4e8af609d970f5caa097494860712a49c7d

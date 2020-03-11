@@ -7,17 +7,65 @@
 //
 
 import UIKit
+import CryptoSwift
+import CryptorRSA
+import CybercourceSDK
+import AHNetwork
+import CommonCrypto
+import SwiftyRSA
+
+
+final class PublicKeyStorage: PublicKeyCRUD {
+    var publicKey: String = ""
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var tokenizer: KeyGenerator!
+    var encryptor: CardTokenizer!
+    let keyStorage = PublicKeyStorage()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+
+          let httpAuthConfig = HTTPAuthConfig(merchantID: "testrest",
+                                                    keyID: "08c94330-f618-42a3-b09d-e1e43be5efda",
+                                                    shardeKeyValue: "yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=")
+        let builder = CybercourceBuilder()
+        builder.httpSingnatureConfig = httpAuthConfig
+        tokenizer = builder.keyGenerator
+        builder.publicKeyStorage = keyStorage
+        encryptor = builder.cardTokenizer
+
+ 
+        let keyInput = KeyGenerationInput(encryptionType: .rsaOaep256, targetOrigin: "https://example.com")
+        tokenizer.generateKeys(using: keyInput) {[weak self] (result) in
+            guard let `self` = self else { return }
+            result.do(work: self.tokenizeCard)
+                  .onError({ debugPrint($0) })
+            
+        }
+      return true
+  
     }
+
+    
+    private func tokenizeCard(using publicKey: GeneratedKey) {
+        keyStorage.publicKey = publicKey.der.publicKey
+        let cardNumber = "4111111111111111"
+        let cardInput = CardInfoInput(cardNumber: cardNumber,
+                                      cardExpirationMonth: "05",
+                                      cardExpirationYear: "2020",
+                                      cardType: "001")
+
+        let input = CardTokenizeInput(keyId: publicKey.keyId, cardInfo: cardInput)
+        encryptor.tokenize(cardInfo: input) { (result) in
+            
+            result.do(work: { debugPrint($0) } )
+                  .onError({ debugPrint($0.localizedDescription)})
+        }
+    }
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
