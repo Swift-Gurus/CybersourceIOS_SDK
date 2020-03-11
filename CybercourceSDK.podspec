@@ -21,13 +21,12 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/c693a6faca023f9cc99909b1e119c25011f8a8b8/CybercourceSDK'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://github.com/aldo-dev/CybersourceIOS_SDK'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'c693a6faca023f9cc99909b1e119c25011f8a8b8' => 'alexei.hmelevski@gmail.com' }
-  s.source           = { :git => 'https://github.com/c693a6faca023f9cc99909b1e119c25011f8a8b8/CybercourceSDK.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'AlexHmelevski' => 'alexei.hmelevski@gmail.com' }
+  s.source           = { :git => 'https://github.com/aldo-dev/CybersourceIOS_SDK.git', :tag => s.version.to_s }
 
+  s.swift_version   = '5.0'
   s.ios.deployment_target = '11.0'
 
   s.source_files = 'CybercourceSDK/Classes/**/*'
